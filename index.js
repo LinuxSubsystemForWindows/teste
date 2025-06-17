@@ -3,7 +3,18 @@ const express = require('express');
 const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data');
+const cors = require('cors');
+
 const app = express();
+app.use(cors());
+
+/*
+Quando finalizar:
+
+app.use(cors({
+  origin: 'https://link-aqui.github.io'
+}));
+*/
 
 const PORT = process.env.PORT || 3000;
 const TELEGRAM_API = `https://api.telegram.org/bot7020765117:AAFIn4F1NCnpcV6zGw26ODYHsAfxMLlRkSI`;
@@ -11,7 +22,7 @@ const TELEGRAM_API = `https://api.telegram.org/bot7020765117:AAFIn4F1NCnpcV6zGw2
 // Configuração do multer (memória, sem salvar no disco)
 const upload = multer({
     storage: multer.memoryStorage(),
-    limits: { fileSize: 30 * 1024 * 1024 } // Limite de 50MB
+    limits: { fileSize: 30 * 1024 * 1024 } // Limite de 30MB
 });
 
 app.get('/', (req, res) => {
